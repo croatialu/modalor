@@ -2,24 +2,73 @@
   "name": "@modalor/vue",
   "type": "module",
   "version": "0.0.0",
-  "private": true,
-  "publishConfig": {
-    "access": "public",
-    "tag": "latest"
+  "packageManager": "pnpm@9.9.0",
+  "description": "A modal state manager for Vue.",
+  "author": "Croatia Lu <wuli.croatia@foxmail.com>",
+  "license": "MIT",
+  "funding": "https://github.com/sponsors/croatialu",
+  "homepage": "https://github.com/croatialu/modalor#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/croatialu/modalor.git"
   },
+  "bugs": "https://github.com/croatialu/modalor/issues",
+  "keywords": [
+    "vue",
+    "modal",
+    "modalor"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./dist/index.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "dev": "vite build --watch",
+    "build": "unbuild",
+    "dev": "unbuild --stub",
     "lint": "eslint .",
-    "build": "vue-tsc -b && vite build"
+    "prepublishOnly": "nr build",
+    "release": "bumpp && npm publish",
+    "start": "esno src/index.ts",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "prepare": "simple-git-hooks"
   },
-  "dependencies": {
-    "vue": "^3.5.12"
+  "peerDependencies": {
+    "vue": ">=3.0.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^5.1.4",
-    "@vitejs/plugin-vue-jsx": "^4.0.1",
-    "typescript": "~5.6.2",
-    "vite": "^5.4.9",
-    "vue-tsc": "^2.1.6"
+    "@antfu/eslint-config": "^3.3.2",
+    "@antfu/ni": "^0.23.0",
+    "@antfu/utils": "^0.7.10",
+    "@types/node": "^22.5.4",
+    "bumpp": "^9.5.2",
+    "eslint": "^9.9.1",
+    "esno": "^4.7.0",
+    "lint-staged": "^15.2.10",
+    "pnpm": "^9.9.0",
+    "simple-git-hooks": "^2.11.1",
+    "typescript": "^5.5.4",
+    "unbuild": "^2.0.0",
+    "vite": "^5.4.3",
+    "vitest": "^2.1.4",
+    "vue": "^3.5.12"
   }
 }
