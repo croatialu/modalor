@@ -10,7 +10,7 @@ export const createModal = create<{ title: string, description: string }>(({ onC
     title: props.title,
     description: props.description,
     isOkLoading,
-  }, () => props.children)
+  }, props.renderChildren)
 }, {
   removeDelay: 1000,
 })

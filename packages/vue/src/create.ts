@@ -10,7 +10,7 @@ interface ModalOptions<T extends AnyObject> {
   onCancel: () => void
   onRemove: () => void
   props: T & {
-    children: JSX.Element
+    renderChildren: () => JSX.Element
   }
 }
 
@@ -93,6 +93,11 @@ export function create<ModalProps extends AnyObject>(
           }
         })
 
+        const renderChildren = () => {
+          const { modalProps, ...otherProps } = attrs
+          return renderModalContent(otherProps as ModalContentProps)
+        }
+
         return () => {
           const { modalProps: _modalProps, ...otherProps } = attrs
           const propsWhenShow = _modalProps as Partial<ModalProps>
@@ -106,8 +111,6 @@ export function create<ModalProps extends AnyObject>(
             ...propsWhenShow,
           }
 
-          const children = renderModalContent(otherProps as ModalContentProps)
-
           return renderModalWrapper({
             open: open.value,
             onOk: handleOk,
@@ -116,7 +119,7 @@ export function create<ModalProps extends AnyObject>(
             isOkLoading: isOkLoading.value,
             props: {
               ...modalProps,
-              children,
+              renderChildren,
             },
           })
         }

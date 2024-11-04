@@ -70,5 +70,11 @@
     "vite": "^5.4.3",
     "vitest": "^2.1.4",
     "vue": "^3.5.12"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
   }
 }
