@@ -6,6 +6,12 @@ A modal state manager for Vue3/React.
 
 ### Vue
 
+### Install
+
+```bash
+pnpm add @modalor/vue
+```
+
 #### create a modal with your own modal component
 
 ```ts
