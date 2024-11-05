@@ -58,6 +58,7 @@ export function provideModalor() {
     ...ctx,
     emit,
     isResolved,
+    resolvedValues,
   }
 }
 

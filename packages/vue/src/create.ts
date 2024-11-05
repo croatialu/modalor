@@ -23,8 +23,8 @@ interface CreateOptions<ModalProps extends AnyObject> {
     modalProps?: (propsWhenCreating: ModalProps, propsWhenShow: Partial<ModalProps>) => ModalProps
   }
   /**
-   * 移除组件的延迟时间
-   * @default 1000
+   * 移除组件的延迟时间 (ms)
+   * @default 300
    */
   removeDelay?: number
 }
@@ -50,33 +50,17 @@ export function create<ModalProps extends AnyObject>(
 
     const Component = defineComponent({
       emits: {
-        resolve: (_values: ResolveValues) => true,
-        destroy: () => true,
+        ok: (_values: ResolveValues) => true,
+        cancel: () => true,
+        close: () => true,
       },
       setup(_, { attrs, emit }) {
         const open = ref(true)
-        const { emit: emitModalor, isResolved, resolve, isOkLoading } = provideModalor()
+        const { emit: emitModalor, isResolved, isOkLoading, resolvedValues } = provideModalor()
 
-        const handleCancel = () => {
+        const handleClose = () => {
           open.value = false
-          resolve(null)
         }
-
-        const handleRemove = () => {
-          emit('destroy')
-        }
-
-        watch(open, (value) => {
-          if (value) {
-            return
-          }
-
-          setTimeout(() => {
-            handleRemove()
-          }, options.removeDelay ?? 1000)
-        }, {
-          once: true,
-        })
 
         const handleOk = async () => {
           try {
@@ -87,9 +71,31 @@ export function create<ModalProps extends AnyObject>(
           }
         }
 
+        const handleCancel = () => {
+          handleClose()
+          emit('cancel')
+        }
+
+        const handleRemove = () => {
+          emit('close')
+        }
+
+        watch(open, (value) => {
+          if (value) {
+            return
+          }
+
+          setTimeout(() => {
+            handleRemove()
+          }, options.removeDelay ?? 300)
+        }, {
+          once: true,
+        })
+
         watch(isResolved, (value) => {
           if (value) {
-            handleCancel()
+            emit('ok', resolvedValues.value)
+            handleClose()
           }
         })
 
@@ -139,13 +145,14 @@ export function create<ModalProps extends AnyObject>(
               key: id,
               id,
               modalProps,
-              onDestroy: () => {
-                resolve([false, null])
+              onClose: () => {
                 remove(id)
               },
-              onResolve: (values: ResolveValues) => {
+              onCancel: () => {
+                resolve([false, null])
+              },
+              onOk: (values: ResolveValues) => {
                 resolve([true, values])
-                remove(id)
               },
             })
           })
