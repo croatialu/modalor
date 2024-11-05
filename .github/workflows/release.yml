@@ -33,6 +33,7 @@ jobs:
         with:
           title: 'chore(release): bump versions'
           commit: 'chore(release): bump package versions'
+          publish: pnpm publish -r
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
