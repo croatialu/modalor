@@ -10,7 +10,21 @@ pnpm add @modalor/vue
 
 ## Usage
 
-### create a modal with your own modal component
+1. Render the Modalor in the root of your app.
+
+```vue
+<script lang="ts" setup>
+import { Modalor } from '@modalor/vue'
+</script>
+
+<!-- App.vue -->
+<template>
+  <!-- ... -->
+  <Modalor />
+</template>
+```
+
+2. create a modal with your own modal component
 
 ```ts
 // modal.ts
@@ -28,7 +42,7 @@ export const createModal = create<ModalProps>(({ onCancel, onOk, open, isOkLoadi
 ))
 ```
 
-### create a modal with a content component
+3. create a modal with a content component
 
 ```ts
 // modals/userProfile.ts
@@ -51,7 +65,7 @@ const userProfileModal = createModal<ModalContentProps, ModalContentResolveValue
 ))
 ```
 
-### use api to show modal
+4. use api to show modal
 
 ```vue
 <script setup>
