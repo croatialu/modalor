@@ -23,7 +23,7 @@ jobs:
           cache: pnpm
 
       - run: pnpm i -g @antfu/ni
-      - run: nci
+      - run: nci --no-frozen-lockfile
       - run: nr lint
       - run: nr typecheck
 
@@ -48,5 +48,5 @@ jobs:
           cache: pnpm
 
       - run: pnpm i -g @antfu/ni
-      - run: nci
+      - run: nci --no-frozen-lockfile
       - run: nr build
