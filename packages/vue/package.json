@@ -12,6 +12,11 @@
     "type": "git",
     "url": "git+https://github.com/croatialu/modalor.git"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public",
+    "tag": "latest"
+  },
   "bugs": "https://github.com/croatialu/modalor/issues",
   "keywords": [
     "vue",
