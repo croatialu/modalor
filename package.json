@@ -10,6 +10,7 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
+    "typecheck": "turbo typecheck",
     "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
