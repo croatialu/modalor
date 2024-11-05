@@ -1,10 +1,15 @@
 # modalor
 
+A modal state manager for Vue3/React.
+
 ## Useage
 
 ### Vue
 
+#### create a modal with your own modal component
+
 ```ts
+// modal.ts
 import { create } from '@modalor/vue'
 import { h } from 'vue'
 
@@ -14,36 +19,44 @@ interface ModalProps {
 }
 
 // 1. create modal wrapper
-const createModal = create<ModalProps>(({ onCancel, onOk, open, isOkLoading, props: { children, ...rest } }) => (
-  h(YourModalComponent, { onCancel, onOk, open, isOkLoading, ...rest }, () => children)
+export const createModal = create<ModalProps>(({ onCancel, onOk, open, isOkLoading, props: { renderChildren, ...rest } }) => (
+  h(YourModalComponent, { onCancel, onOk, open, isOkLoading, ...rest }, renderChildren)
 ))
+```
 
-// 2. use modal wrapper
-// 2.1 define modal content props
+#### create a modal with a content component
+
+```ts
+// modals/userProfile.ts
+import { createModal } from './../modal'
+
+// 1.define modal content props
 interface ModalContentProps {
   username: string
   // ...
 }
 
-// 2.2 define modal content resolve values
+// 2. define modal content resolve values
 interface ModalContentResolveValues {
   newUsername: string
   // ...
 }
-// 2.3 create modal wrapper with modal content props and resolve values
-const yourModal = createModal<ModalContentProps, ModalContentResolveValues>(props => (
+// 3. create modal wrapper with modal content props and resolve values
+const userProfileModal = createModal<ModalContentProps, ModalContentResolveValues>(props => (
   h(YourModalContentComponent, { ...props })
 ))
 ```
 
+#### use api to show modal
+
 ```vue
 <script setup>
 // 1. import your modal
-import { yourModal } from 'yourModal.ts'
+import { userProfileModal } from '@/modals/userProfile'
 
 async function showModal() {
   // 2. show modal
-  const [isOk, result] = await yourModal.show({
+  const [isOk, result] = await userProfileModal.show({
     username: 'John'
   }, {
     title: 'User Profile', // you can override modal props
@@ -62,6 +75,10 @@ async function showModal() {
   </button>
 </template>
 ```
+
+### React
+
+WIP 🚧
 
 ## Build
 

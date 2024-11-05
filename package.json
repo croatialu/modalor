@@ -2,6 +2,7 @@
   "name": "modalor",
   "private": true,
   "packageManager": "pnpm@8.15.6",
+  "description": "A modal state manager for Vue3/React.",
   "engines": {
     "node": ">=18"
   },
