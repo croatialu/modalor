@@ -52,7 +52,7 @@ importers:
         version: 18.3.1(react@18.3.1)
     devDependencies:
       '@eslint/js':
-        specifier: ^9.13.0
+        specifier: ^9.14.0
         version: 9.14.0
       '@types/react':
         specifier: ^18.3.12
@@ -62,9 +62,9 @@ importers:
         version: 18.3.1
       '@vitejs/plugin-react':
         specifier: ^4.3.3
-        version: 4.3.3(vite@5.4.10(@types/node@22.8.7))
+        version: 4.3.3(vite@5.4.10(@types/node@22.9.0))
       eslint:
-        specifier: ^9.13.0
+        specifier: ^9.14.0
         version: 9.14.0(jiti@2.4.0)
       eslint-plugin-react-hooks:
         specifier: ^5.0.0
@@ -73,17 +73,17 @@ importers:
         specifier: ^0.4.14
         version: 0.4.14(eslint@9.14.0(jiti@2.4.0))
       globals:
-        specifier: ^15.11.0
+        specifier: ^15.12.0
         version: 15.12.0
       typescript:
-        specifier: ~5.6.2
+        specifier: ~5.6.3
         version: 5.6.3
       typescript-eslint:
-        specifier: ^8.11.0
+        specifier: ^8.13.0
         version: 8.13.0(eslint@9.14.0(jiti@2.4.0))(typescript@5.6.3)
       vite:
         specifier: ^5.4.10
-        version: 5.4.10(@types/node@22.8.7)
+        version: 5.4.10(@types/node@22.9.0)
 
   apps/vue-playground:
     dependencies:
@@ -122,8 +122,8 @@ importers:
   packages/react:
     devDependencies:
       '@antfu/eslint-config':
-        specifier: ^3.3.2
-        version: 3.8.0(@eslint-react/eslint-plugin@1.15.2(eslint@9.14.0(jiti@2.4.0))(typescript@5.6.3))(@typescript-eslint/utils@8.13.0(eslint@9.14.0(jiti@2.4.0))(typescript@5.6.3))(@vue/compiler-sfc@3.5.12)(eslint-plugin-format@0.1.2(eslint@9.14.0(jiti@2.4.0)))(eslint-plugin-react-hooks@5.0.0(eslint@9.14.0(jiti@2.4.0)))(eslint-plugin-react-refresh@0.4.14(eslint@9.14.0(jiti@2.4.0)))(eslint@9.14.0(jiti@2.4.0))(typescript@5.6.3)(vitest@2.1.4(@types/node@22.8.7))
+        specifier: ^3.8.0
+        version: 3.8.0(@eslint-react/eslint-plugin@1.15.2(eslint@9.14.0(jiti@2.4.0))(typescript@5.6.3))(@typescript-eslint/utils@8.13.0(eslint@9.14.0(jiti@2.4.0))(typescript@5.6.3))(@vue/compiler-sfc@3.5.12)(eslint-plugin-format@0.1.2(eslint@9.14.0(jiti@2.4.0)))(eslint-plugin-react-hooks@5.0.0(eslint@9.14.0(jiti@2.4.0)))(eslint-plugin-react-refresh@0.4.14(eslint@9.14.0(jiti@2.4.0)))(eslint@9.14.0(jiti@2.4.0))(typescript@5.6.3)(vitest@2.1.4(@types/node@22.9.0))
       '@antfu/ni':
         specifier: ^0.23.0
         version: 0.23.0
@@ -131,25 +131,25 @@ importers:
         specifier: ^0.7.10
         version: 0.7.10
       '@types/node':
-        specifier: ^22.5.4
-        version: 22.8.7
+        specifier: ^22.9.0
+        version: 22.9.0
       '@types/react':
         specifier: ^18.3.12
         version: 18.3.12
       bumpp:
-        specifier: ^9.5.2
+        specifier: ^9.8.1
         version: 9.8.1
       eslint:
-        specifier: ^9.9.1
+        specifier: ^9.14.0
         version: 9.14.0(jiti@2.4.0)
       esno:
-        specifier: ^4.7.0
+        specifier: ^4.8.0
         version: 4.8.0
       lint-staged:
         specifier: ^15.2.10
         version: 15.2.10
       pnpm:
-        specifier: ^9.9.0
+        specifier: ^9.12.3
         version: 9.12.3
       react:
         specifier: ^18.3.1
@@ -158,17 +158,17 @@ importers:
         specifier: ^2.11.1
         version: 2.11.1
       typescript:
-        specifier: ^5.5.4
+        specifier: ^5.6.3
         version: 5.6.3
       unbuild:
         specifier: ^2.0.0
         version: 2.0.0(typescript@5.6.3)(vue-tsc@2.1.10(typescript@5.6.3))
       vite:
-        specifier: ^5.4.3
-        version: 5.4.10(@types/node@22.8.7)
+        specifier: ^5.4.10
+        version: 5.4.10(@types/node@22.9.0)
       vitest:
         specifier: ^2.1.4
-        version: 2.1.4(@types/node@22.8.7)
+        version: 2.1.4(@types/node@22.9.0)
 
   packages/vue:
     devDependencies:
