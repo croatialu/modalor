@@ -8,6 +8,7 @@ import NormalPlayground from './views/Normal.vue'
 <template>
   <div>
     <div class="flex gap-4">
+      <v-btn>123</v-btn>
       <div class="w-1/2 border border-gray-200 rounded-lg p-4">
         <NormalPlayground />
       </div>

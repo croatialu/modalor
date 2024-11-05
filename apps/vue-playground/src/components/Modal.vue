@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 
 const props = defineProps<{
   open: boolean
@@ -11,7 +11,17 @@ const props = defineProps<{
 const emit = defineEmits<{
   (e: 'cancel'): void
   (e: 'ok'): void
+  (e: 'update:open', value: boolean): void
 }>()
+
+const isOpen = computed({
+  get() {
+    return props.open
+  },
+  set(value) {
+    emit('update:open', value)
+  },
+})
 
 function cancel() {
   emit('cancel')
@@ -37,31 +47,35 @@ watch(() => [props.open, dialogRef.value] as const, ([open, dialog]) => {
 </script>
 
 <template>
-  <dialog ref="dialogRef" class="rounded-lg shadow-lg p-4">
-    <h1 class="text-2xl font-bold">
-      {{ title }}
-    </h1>
-    <p class="text-sm text-gray-500">
-      {{ description }}
-    </p>
+  <v-dialog v-model="isOpen" max-width="500" persistent>
+    <template #default>
+      <v-card :title="props.title">
+        <v-card-subtitle>
+          {{ props.description }}
+        </v-card-subtitle>
+        <v-card-text>
+          <slot />
+        </v-card-text>
 
-    <slot />
+        <v-card-actions>
+          <v-spacer />
 
-    <br>
-    <div class="flex justify-end gap-2">
-      <button autofocus @click="cancel">
-        Cancel
-      </button>
-      <button :disabled="isOkLoading" @click="ok">
-        Ok{{ isOkLoading ? '(Loading...)' : '' }}
-      </button>
-    </div>
-  </dialog>
+          <v-btn
+            text="Cancel"
+            @click="cancel"
+          />
+          <v-btn
+            text="OK"
+            :loading="props.isOkLoading"
+            color="primary"
+            variant="outlined"
+            @click="ok"
+          />
+        </v-card-actions>
+      </v-card>
+    </template>
+  </v-dialog>
 </template>
 
 <style scoped>
-::backdrop {
-  background-image: linear-gradient(45deg, magenta, rebeccapurple, dodgerblue, green);
-  opacity: 0.75;
-}
 </style>
