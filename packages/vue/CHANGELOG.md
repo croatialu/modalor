@@ -1,5 +1,11 @@
 # @modalor/vue
 
+## 0.0.4
+
+### Patch Changes
+
+- 6a5007c: fix(vue): set inheritAttrs to false
+
 ## 0.0.3
 
 ### Patch Changes
