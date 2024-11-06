@@ -49,6 +49,8 @@ export function create<ModalProps extends AnyObject>(
     const { create, remove } = useModalorChildren()
 
     const Component = defineComponent({
+      inheritAttrs: false,
+      name: 'ModalorChild',
       emits: {
         ok: (_values: ResolveValues) => true,
         cancel: () => true,
@@ -161,70 +163,3 @@ export function create<ModalProps extends AnyObject>(
     }
   }
 }
-
-// const createModalor = create<{ title: string, description: string }>(({ open, onCancel, props }) => {
-//   return (
-//     <dialog
-//       open={open}
-//       title={props.title}
-//       onClose={onCancel}
-//     >
-//       {
-//         props.description && <p>{props.description}</p>
-//       }
-
-//       {
-//         props.children
-//       }
-//     </dialog>
-//   )
-// }, {
-//   transformers: {
-//     modalProps: (propsWhenCreating, propsWhenShow) => ({
-//       ...propsWhenCreating,
-//       ...propsWhenShow,
-//     }),
-//   },
-// })
-
-// interface UserProfileReturnType {
-//   name: string
-// }
-
-// const UserProfile = defineComponent({
-//   props: {
-//     name: String,
-//   },
-//   setup(props) {
-
-//     const { onOk, resolve } = useModalor()
-
-//     const newName = ref(props.name)
-
-//     onOk(() => {
-//       resolve({
-//         name: newName.value,
-//       })
-//     })
-
-//     return () => <div>
-//       <h1>User Profile</h1>
-//       <input v-model={newName.value} />
-//     </div>
-//   }
-// })
-
-// const helloModalor = createModalor<{ name: string }, UserProfileReturnType>(({ name }) => (
-//   <UserProfile name={name} />
-// ), {
-//   title: '123',
-//   description: ''
-// })
-
-// const [isOk, result] = await helloModalor.show({
-//   name: 'World',
-// }, { title: '123' })
-
-// if (isOk) {
-//   console.log(result)
-// }

@@ -1,15 +1,15 @@
 import type { Ref, ShallowRef } from 'vue'
 import { computed, inject, provide, ref, shallowRef } from 'vue'
 
-interface ModalorCtx {
+interface ModalorCtx<T = any> {
   onOk: (fn: () => void) => void
   onCancel: (fn: () => void) => void
-  resolve: (values: any) => void
+  resolve: (values: T) => void
   isOkLoading: Ref<boolean>
 }
 
-export function useModalor() {
-  return injectModalor()
+export function useModalor<T = any>() {
+  return injectModalor<T>()
 }
 
 const EMPTY_SYMBOL = Symbol('empty')
@@ -62,7 +62,7 @@ export function provideModalor() {
   }
 }
 
-function injectModalor(): ModalorCtx {
+function injectModalor<T = any>(): ModalorCtx<T> {
   const isOkLoading = ref(false)
   const defaultValue = {
     onOk: () => { },
