@@ -1,5 +1,11 @@
 # @modalor/vue
 
+## 0.0.5
+
+### Patch Changes
+
+- 3f221ca: fix(vue): collect to modalContentProps
+
 ## 0.0.4
 
 ### Patch Changes
