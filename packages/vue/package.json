@@ -1,7 +1,7 @@
 {
   "name": "@modalor/vue",
   "type": "module",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "packageManager": "pnpm@9.9.0",
   "description": "A modal state manager for Vue.",
   "author": "Croatia Lu <wuli.croatia@foxmail.com>",
