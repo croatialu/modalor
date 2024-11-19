@@ -1,3 +1,4 @@
+import type { PropType } from 'vue'
 import type { JSX } from 'vue/jsx-runtime'
 import { defineComponent, h, ref, watch } from 'vue'
 import { useModalorChildren } from './state'
@@ -49,14 +50,23 @@ export function create<ModalProps extends AnyObject>(
     const { create, remove } = useModalorChildren()
 
     const Component = defineComponent({
-      inheritAttrs: false,
+      props: {
+        modalContentProps: {
+          type: Object as PropType<ModalContentProps>,
+          required: true,
+        },
+        modalProps: {
+          type: Object as PropType<Partial<ModalProps>>,
+          required: true,
+        },
+      },
       name: 'ModalorChild',
       emits: {
         ok: (_values: ResolveValues) => true,
         cancel: () => true,
         close: () => true,
       },
-      setup(_, { attrs, emit }) {
+      setup(props, { emit }) {
         const open = ref(true)
         const { emit: emitModalor, isResolved, isOkLoading, resolvedValues } = provideModalor()
 
@@ -102,16 +112,14 @@ export function create<ModalProps extends AnyObject>(
         })
 
         const renderChildren = () => {
-          const { modalProps, ...otherProps } = attrs
-          return renderModalContent(otherProps as ModalContentProps)
+          return renderModalContent(props.modalContentProps as ModalContentProps)
         }
 
         return () => {
-          const { modalProps: _modalProps, ...otherProps } = attrs
-          const propsWhenShow = _modalProps as Partial<ModalProps>
+          const propsWhenShow = props.modalProps as Partial<ModalProps>
 
           const tmpPropsWhenCreating = (typeof propsWhenCreating === 'function'
-            ? propsWhenCreating(otherProps as ModalContentProps)
+            ? propsWhenCreating(props.modalContentProps as ModalContentProps)
             : propsWhenCreating) as unknown as ModalProps
 
           const modalProps = options.transformers?.modalProps?.(tmpPropsWhenCreating, propsWhenShow) ?? {
@@ -143,10 +151,9 @@ export function create<ModalProps extends AnyObject>(
         return new Promise<[false, null] | [true, ResolveValues]>((resolve) => {
           create((id) => {
             return h(Component, {
-              ...props,
               key: id,
-              id,
-              modalProps,
+              modalContentProps: props as any,
+              modalProps: modalProps as any,
               onClose: () => {
                 remove(id)
               },
