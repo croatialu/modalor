@@ -1,5 +1,12 @@
 # @modalor/vue
 
+## 0.0.6
+
+### Patch Changes
+
+- 3ceca76: feat: support isOkDisabled
+- 91f3f00: chore: update deps
+
 ## 0.0.5
 
 ### Patch Changes
