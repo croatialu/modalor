@@ -7,6 +7,7 @@ import { provideModalor } from './useModalor'
 interface ModalOptions<T extends AnyObject> {
   open: boolean
   isOkLoading: boolean
+  isOkDisabled: boolean
   onOk: () => void
   onCancel: () => void
   onRemove: () => void
@@ -68,7 +69,7 @@ export function create<ModalProps extends AnyObject>(
       },
       setup(props, { emit }) {
         const open = ref(true)
-        const { emit: emitModalor, isResolved, isOkLoading, resolvedValues } = provideModalor()
+        const { emit: emitModalor, isResolved, isOkLoading, resolvedValues, isOkDisabled } = provideModalor()
 
         const handleClose = () => {
           open.value = false
@@ -133,6 +134,7 @@ export function create<ModalProps extends AnyObject>(
             onCancel: handleCancel,
             onRemove: handleRemove,
             isOkLoading: isOkLoading.value,
+            isOkDisabled: isOkDisabled.value,
             props: {
               ...modalProps,
               renderChildren,

@@ -6,6 +6,7 @@ interface ModalorCtx<T = any> {
   onCancel: (fn: () => void) => void
   resolve: (values: T) => void
   isOkLoading: Ref<boolean>
+  isOkDisabled: Ref<boolean>
 }
 
 export function useModalor<T = any>() {
@@ -18,6 +19,7 @@ export function provideModalor() {
   const okQueue: (() => (void | Promise<void>))[] = []
   const cancelQueue: (() => (void | Promise<void>))[] = []
   const isOkLoading = ref(false)
+  const isOkDisabled = ref(false)
 
   const onOk = (fn: () => (void | Promise<void>)) => {
     okQueue.push(fn)
@@ -50,6 +52,7 @@ export function provideModalor() {
     onCancel,
     resolve,
     isOkLoading,
+    isOkDisabled,
   } satisfies ModalorCtx
 
   provide('MODALOR', ctx)
@@ -64,6 +67,7 @@ export function provideModalor() {
 
 function injectModalor<T = any>(): ModalorCtx<T> {
   const isOkLoading = ref(false)
+  const isOkDisabled = ref(false)
   const defaultValue = {
     onOk: () => { },
     onCancel: () => { },
@@ -71,6 +75,7 @@ function injectModalor<T = any>(): ModalorCtx<T> {
       isOkLoading.value = false
     },
     isOkLoading,
+    isOkDisabled,
   } as ModalorCtx
 
   return inject<ModalorCtx>('MODALOR', defaultValue)!
