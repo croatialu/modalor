@@ -1,5 +1,4 @@
 ---
-"vue-playground": patch
 "@modalor/vue": patch
 ---
 
