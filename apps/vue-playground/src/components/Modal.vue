@@ -4,6 +4,7 @@ import { computed, ref, watch } from 'vue'
 const props = defineProps<{
   open: boolean
   isOkLoading?: boolean
+  isOkDisabled?: boolean
   title: string
   description: string
 }>()
@@ -67,6 +68,7 @@ watch(() => [props.open, dialogRef.value] as const, ([open, dialog]) => {
           <v-btn
             text="OK"
             :loading="props.isOkLoading"
+            :disabled="props.isOkDisabled"
             color="primary"
             variant="outlined"
             @click="ok"
