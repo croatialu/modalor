@@ -1,4 +1,4 @@
-import type { PropsWithChildren } from 'react'
+import type { JSX, PropsWithChildren } from 'react'
 import { createContext, createElement, useCallback, useContext, useState } from 'react'
 
 interface ModalrGlobalContext {

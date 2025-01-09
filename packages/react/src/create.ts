@@ -1,3 +1,4 @@
+import type { JSX } from 'react'
 import { createElement, useEffect, useState } from 'react'
 import { useModalorGlobal } from './Modalor'
 import { useProvideModalor } from './useModalor'
@@ -6,6 +7,8 @@ interface ModalOptions<T extends AnyObject> {
   open: boolean
   isOkLoading: boolean
   setOkLoadingStatus: (value: boolean) => void
+  isOkDisabled: boolean
+  setOkDisabledStatus: (value: boolean) => void
   onOk: () => void
   onCancel: () => void
   onRemove: () => void
@@ -123,6 +126,8 @@ export function create<ModalProps extends AnyObject>(
         onRemove: handleRemove,
         setOkLoadingStatus: modalorCtx.setOkLoadingStatus,
         isOkLoading: modalorCtx.isOkLoading,
+        isOkDisabled: modalorCtx.isOkDisabled,
+        setOkDisabledStatus: modalorCtx.setOkDisabledStatus,
         props: {
           ...modalProps,
           renderChildren,
