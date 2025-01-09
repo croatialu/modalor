@@ -5,6 +5,7 @@ interface ModalorCtx {
   onCancel: (fn: () => void) => void
   resolve: (values: any) => void
   isOkLoading: boolean
+  isOkDisabled: boolean
 }
 
 export function useModalor() {
@@ -18,6 +19,7 @@ export const ModalorContext = createContext<ModalorCtx>({
   onCancel: () => { },
   resolve: () => { },
   isOkLoading: false,
+  isOkDisabled: false,
 })
 
 ModalorContext.displayName = 'ModalorContext'
@@ -26,7 +28,7 @@ export function useProvideModalor() {
   const okQueue = useRef([] as (() => (void | Promise<void>))[])
   const cancelQueue = useRef([] as (() => (void | Promise<void>))[])
   const [isOkLoading, setOkLoadingStatus] = useState(false)
-
+  const [isOkDisabled, setOkDisabledStatus] = useState(false)
   const [resolvedValues, setResolvedValues] = useState(EMPTY_SYMBOL)
 
   const isResolved = useMemo(() => resolvedValues !== EMPTY_SYMBOL, [resolvedValues])
@@ -58,6 +60,8 @@ export function useProvideModalor() {
     resolve,
     isOkLoading,
     setOkLoadingStatus,
+    isOkDisabled,
+    setOkDisabledStatus,
     emit,
     isResolved,
     resolvedValues,
