@@ -1,25 +1,29 @@
 import { createContext, useCallback, useContext, useMemo, useRef, useState } from 'react'
 
-interface ModalorCtx {
+interface ModalorCtx<T> {
   onOk: (fn: () => void) => void
   onCancel: (fn: () => void) => void
-  resolve: (values: any) => void
+  resolve: (values: T) => void
   isOkLoading: boolean
   isOkDisabled: boolean
+  setOkLoading: (value: boolean) => void
+  setOkDisabled: (value: boolean) => void
 }
 
-export function useModalor() {
-  return injectModalor()
+export function useModalor<T>() {
+  return injectModalor<T>()
 }
 
 const EMPTY_SYMBOL = Symbol('empty')
 
-export const ModalorContext = createContext<ModalorCtx>({
+export const ModalorContext = createContext<ModalorCtx<any>>({
   onOk: () => { },
   onCancel: () => { },
   resolve: () => { },
   isOkLoading: false,
+  setOkLoading: (_value: boolean) => { },
   isOkDisabled: false,
+  setOkDisabled: (_value: boolean) => { },
 })
 
 ModalorContext.displayName = 'ModalorContext'
@@ -27,8 +31,8 @@ ModalorContext.displayName = 'ModalorContext'
 export function useProvideModalor() {
   const okQueue = useRef([] as (() => (void | Promise<void>))[])
   const cancelQueue = useRef([] as (() => (void | Promise<void>))[])
-  const [isOkLoading, setOkLoadingStatus] = useState(false)
-  const [isOkDisabled, setOkDisabledStatus] = useState(false)
+  const [isOkLoading, setOkLoading] = useState(false)
+  const [isOkDisabled, setOkDisabled] = useState(false)
   const [resolvedValues, setResolvedValues] = useState(EMPTY_SYMBOL)
 
   const isResolved = useMemo(() => resolvedValues !== EMPTY_SYMBOL, [resolvedValues])
@@ -59,16 +63,16 @@ export function useProvideModalor() {
     onCancel,
     resolve,
     isOkLoading,
-    setOkLoadingStatus,
+    setOkLoading,
     isOkDisabled,
-    setOkDisabledStatus,
+    setOkDisabled,
     emit,
     isResolved,
     resolvedValues,
   }
 }
 
-function injectModalor(): ModalorCtx {
+function injectModalor<T>(): ModalorCtx<T> {
   try {
     return useContext(ModalorContext)
   }

@@ -1,4 +1,4 @@
-import type { JSX, PropsWithChildren } from 'react'
+import type { JSX, ReactNode } from 'react'
 import { createContext, createElement, useCallback, useContext, useState } from 'react'
 
 interface ModalrGlobalContext {
@@ -20,7 +20,7 @@ let modalorChildId = 0
 
 export const useModalorGlobal = () => useContext(Context)
 
-export function ModalorProvider({ children }: PropsWithChildren) {
+export const ModalorProvider = ({ children }: { children: ReactNode | undefined }) => {
   const [modalorChildren, setModalorChildren] = useState<ModalorChild[]>([])
 
   const create = useCallback((render: (id: string) => JSX.Element) => {

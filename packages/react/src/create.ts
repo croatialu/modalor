@@ -6,9 +6,9 @@ import { useProvideModalor } from './useModalor'
 interface ModalOptions<T extends AnyObject> {
   open: boolean
   isOkLoading: boolean
-  setOkLoadingStatus: (value: boolean) => void
+  setOkLoading: (value: boolean) => void
   isOkDisabled: boolean
-  setOkDisabledStatus: (value: boolean) => void
+  setOkDisabled: (value: boolean) => void
   onOk: () => void
   onCancel: () => void
   onRemove: () => void
@@ -84,6 +84,7 @@ export function create<ModalProps extends AnyObject>(
       const handleCancel = () => {
         handleClose()
         onCancel?.()
+        modalorCtx.emit('cancel')
       }
 
       const handleRemove = () => {
@@ -124,10 +125,10 @@ export function create<ModalProps extends AnyObject>(
         onOk: handleOk,
         onCancel: handleCancel,
         onRemove: handleRemove,
-        setOkLoadingStatus: modalorCtx.setOkLoadingStatus,
+        setOkLoading: modalorCtx.setOkLoading,
         isOkLoading: modalorCtx.isOkLoading,
         isOkDisabled: modalorCtx.isOkDisabled,
-        setOkDisabledStatus: modalorCtx.setOkDisabledStatus,
+        setOkDisabled: modalorCtx.setOkDisabled,
         props: {
           ...modalProps,
           renderChildren,
