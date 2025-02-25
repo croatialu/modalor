@@ -87,6 +87,7 @@ export function create<ModalProps extends AnyObject>(
         const handleCancel = () => {
           handleClose()
           emit('cancel')
+          emitModalor('cancel')
         }
 
         const handleRemove = () => {
