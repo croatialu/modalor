@@ -1,5 +1,11 @@
 # @modalor/vue
 
+## 0.0.7
+
+### Patch Changes
+
+- d6e5f7e: fix: trigger cancel
+
 ## 0.0.6
 
 ### Patch Changes
