@@ -1,7 +1,8 @@
+import type { ReactNode } from 'react'
 import { createContext, useCallback, useEffect, useState } from 'react'
 
 interface ModalorGlobalActions {
-  create: (render: (id: string) => JSX.Element) => string
+  create: (render: (id: string) => ReactNode) => string
   remove: (id: string) => void
 }
 
@@ -12,7 +13,7 @@ export const ModalorContext = createContext<ModalorGlobalActions>({
 
 interface ModalorChild {
   id: string
-  render: () => JSX.Element
+  render: () => ReactNode
 }
 
 let modalorChildId = 0
@@ -31,7 +32,7 @@ export const useModalorGlobalActions = () => actions
 export function useModalorChildren() {
   const [modalorChildren, setModalorChildren] = useState<ModalorChild[]>([])
 
-  const create = useCallback((render: (id: string) => JSX.Element) => {
+  const create = useCallback((render: (id: string) => ReactNode) => {
     const id = `MODALOR_CHILD_${modalorChildId++}`
     setModalorChildren(prev => [...prev, { id, render: () => render(id) }])
     return id
