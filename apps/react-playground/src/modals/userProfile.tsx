@@ -1,6 +1,5 @@
-import { UserProfile } from "@/components/UserProfile"
-import { createModal } from "../modal"
-
+import { UserProfile } from '@/components/UserProfile'
+import { createModal } from '../modal'
 
 interface Input {
   name: string
