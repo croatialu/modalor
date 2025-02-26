@@ -8,7 +8,7 @@ A modal state manager for Vue3/React.
 
 ## React
 
-WIP 🚧
+[packages/react](https://github.com/croatialu/modalor/tree/main/packages/react)
 
 ## Build
 
