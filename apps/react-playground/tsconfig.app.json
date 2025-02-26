@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
-    "target": "ES2020",
+    "target": "ESNext",
     "jsx": "react-jsx",
     "lib": [
       "ES2020",
@@ -13,6 +13,11 @@
     "module": "ESNext",
     /* Bundler mode */
     "moduleResolution": "Bundler",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
     "allowImportingTsExtensions": true,
     /* Linting */
     "strict": true,
@@ -22,14 +27,9 @@
     "noEmit": true,
     "isolatedModules": true,
     "skipLibCheck": true,
-    "noUncheckedSideEffectImports": true,
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    }
+    "noUncheckedSideEffectImports": true
   },
   "include": [
     "src"
-  ],
+  ]
 }

@@ -1,16 +1,16 @@
-import { Input } from "@chakra-ui/react"
-import { useModalor } from "@modalor/react"
-import { useEffect, useState } from "react"
+import { Input } from '@chakra-ui/react'
+import { useModalor } from '@modalor/react'
+import { useEffect, useState } from 'react'
 
-
-export const Confirm = () => {
+export function Confirm() {
   const { onOk, resolve, setOkDisabled, setOkLoading } = useModalor()
 
   const [value, setValue] = useState('')
 
   useEffect(() => {
+    console.log('value', value)
     setOkDisabled(value !== 'confirm')
-  }, [value])
+  }, [value, setOkDisabled])
 
   onOk(() => {
     setOkLoading(true)
@@ -20,12 +20,13 @@ export const Confirm = () => {
     }, 1000)
   })
 
+  return (
+    <div>
+      type "confirm" to confirm:
 
-  return <div>
-    type "confirm" to confirm:
+      <br />
 
-    <br />
-
-    <Input value={value} onChange={(e) => setValue(e.target.value)} />
-  </div>
+      <Input value={value} onChange={e => setValue(e.target.value)} />
+    </div>
+  )
 }

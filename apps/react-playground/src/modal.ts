@@ -1,9 +1,14 @@
 import { create } from '@modalor/react'
-import { Modal } from './components/Modal'
 import { createElement } from 'react'
+import { Modal } from './components/Modal'
 
 export const createModal = create<{ title: string, description: string }>(({
-  onCancel, onOk, open, isOkLoading, isOkDisabled, props
+  onCancel,
+  onOk,
+  open,
+  isOkLoading,
+  isOkDisabled,
+  props,
 }) => {
   return createElement(Modal, {
     open,

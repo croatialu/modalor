@@ -1,14 +1,14 @@
+import type { PropsWithChildren } from 'react'
 import {
-  DialogRoot,
-  Button,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
+  DialogBackdrop,
   DialogBody,
+  DialogContent,
   DialogFooter,
-  DialogCloseTrigger
-} from "@chakra-ui/react"
-import { PropsWithChildren } from "react"
+  DialogHeader,
+  DialogRoot,
+  DialogTitle,
+} from '@/components/ui/dialog'
+import { Button } from '@chakra-ui/react'
 
 interface ModalProps {
   open?: boolean
@@ -17,12 +17,11 @@ interface ModalProps {
   title: string
   description: string
 
-
   onCancel?: () => void
   onOk?: () => void
 }
 
-export const Modal = ({
+export function Modal({
   open,
   title,
   description,
@@ -30,10 +29,12 @@ export const Modal = ({
   isOkLoading,
   isOkDisabled,
   onCancel,
-  onOk
-}: PropsWithChildren<ModalProps>) => {
+  onOk,
+}: PropsWithChildren<ModalProps>) {
   return (
-    <DialogRoot open={open}>
+    <DialogRoot open={open} modal placement="center" motionPreset="slide-in-bottom">
+      <DialogBackdrop />
+
       <DialogContent>
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
@@ -52,10 +53,11 @@ export const Modal = ({
             loading={isOkLoading}
             disabled={isOkDisabled}
             onClick={onOk}
-          >Save</Button>
+          >
+            Save
+          </Button>
 
         </DialogFooter>
-        <DialogCloseTrigger />
       </DialogContent>
     </DialogRoot>
   )
