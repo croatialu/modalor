@@ -1,7 +1,7 @@
 import type { JSX } from 'react'
 import { createElement, useEffect, useState } from 'react'
-import { useModalorGlobal } from './Modalor'
-import { useProvideModalor } from './useModalor'
+import { useModalorGlobalActions } from './state'
+import { ModalorContext, useProvideModalor } from './useModalor'
 
 interface ModalOptions<T extends AnyObject> {
   open: boolean
@@ -49,8 +49,7 @@ export function create<ModalProps extends AnyObject>(
     /** createModal 时传入的 modal props */
     propsWhenCreating: PropsWhenCreating | ((props: ModalContentProps) => PropsWhenCreating) = {} as PropsWhenCreating,
   ) => {
-    const { create, remove } = useModalorGlobal()
-
+    const actions = useModalorGlobalActions()
     const Component = ({
       onOk,
       onCancel,
@@ -61,11 +60,12 @@ export function create<ModalProps extends AnyObject>(
       onCancel?: () => void
       onClose?: () => void
       modalProps: Partial<ModalProps>
+      modalContentProps: ModalContentProps
       [x: string]: any
     }) => {
       const modalorCtx = useProvideModalor()
-      const { modalProps: _modalProps, ...otherProps } = props
-      const propsWhenShow = _modalProps as Partial<ModalProps>
+      const { modalProps: _modalProps, modalContentProps, ...otherProps } = props
+      const propsWhenShow = _modalProps
       const [open, setOpenStatus] = useState(true)
 
       const handleClose = () => {
@@ -107,8 +107,7 @@ export function create<ModalProps extends AnyObject>(
       }, [modalorCtx.isResolved])
 
       const renderChildren = () => {
-        const { modalProps, ...otherProps } = props
-        return renderModalContent(otherProps as ModalContentProps)
+        return renderModalContent(modalContentProps)
       }
 
       const tmpPropsWhenCreating = (typeof propsWhenCreating === 'function'
@@ -120,7 +119,7 @@ export function create<ModalProps extends AnyObject>(
         ...propsWhenShow,
       }
 
-      return renderModalWrapper({
+      return createElement(ModalorContext.Provider, { value: modalorCtx }, renderModalWrapper({
         open,
         onOk: handleOk,
         onCancel: handleCancel,
@@ -133,7 +132,7 @@ export function create<ModalProps extends AnyObject>(
           ...modalProps,
           renderChildren,
         },
-      })
+      }))
     }
 
     return {
@@ -143,14 +142,14 @@ export function create<ModalProps extends AnyObject>(
         modalProps: Partial<ModalProps> = {} as Partial<ModalProps>,
       ) => {
         return new Promise<[false, null] | [true, ResolveValues]>((resolve) => {
-          create((id) => {
+          actions.create((id) => {
             return createElement(Component, {
-              ...props,
               key: id,
               id,
+              modalContentProps: props,
               modalProps,
               onClose: () => {
-                remove(id)
+                actions.remove(id)
               },
               onCancel: () => {
                 resolve([false, null])

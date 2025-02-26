@@ -1,39 +1,11 @@
-import type { JSX, ReactNode } from 'react'
-import { createContext, createElement, useCallback, useContext, useState } from 'react'
+import type { ReactNode } from 'react'
+import { createElement, Fragment } from 'react'
+import { useModalorChildren } from './state'
 
-interface ModalrGlobalContext {
-  create: (render: (id: string) => JSX.Element) => string
-  remove: (id: string) => void
-}
+export function ModalorProvider({ children }: { children: ReactNode | undefined }): JSX.Element {
+  const { children: modalorChildren } = useModalorChildren()
 
-interface ModalorChild {
-  id: string
-  render: () => JSX.Element
-}
-
-const Context = createContext<ModalrGlobalContext>({
-  create: () => '',
-  remove: () => { },
-})
-
-let modalorChildId = 0
-
-export const useModalorGlobal = () => useContext(Context)
-
-export const ModalorProvider = ({ children }: { children: ReactNode | undefined }) => {
-  const [modalorChildren, setModalorChildren] = useState<ModalorChild[]>([])
-
-  const create = useCallback((render: (id: string) => JSX.Element) => {
-    const id = `MODALOR_CHILD_${modalorChildId++}`
-    setModalorChildren([...modalorChildren, { id, render: () => render(id) }])
-    return id
-  }, [modalorChildren])
-
-  const remove = useCallback((id: string) => {
-    setModalorChildren(modalorChildren.filter(child => child.id !== id))
-  }, [modalorChildren])
-
-  return createElement(Context.Provider, { value: { create, remove } }, [
+  return createElement(Fragment, null, [
     children,
     ...modalorChildren.map(child => child.render()),
   ])
