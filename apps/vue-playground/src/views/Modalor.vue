@@ -9,8 +9,10 @@ async function showUserProfile() {
     title: `User Profile ${Math.random()}`,
   })
 
+  // eslint-disable-next-line no-console
   console.log(isOk, result)
   if (isOk) {
+    // eslint-disable-next-line no-console
     console.log(result)
   }
 }

@@ -16,7 +16,6 @@ export function useModalorChildren() {
   const create = (render: (id: string) => JSX.Element) => {
     const id = `MODALOR_CHILD_${modalorChildId++}`
 
-    // modalorChildren.value.push({ id, render })
     modalorChildren.value = [...modalorChildren.value, { id, render: () => render(id) }]
 
     return id
