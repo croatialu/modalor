@@ -1,5 +1,12 @@
 # @modalor/vue
 
+## 1.0.1
+
+### Patch Changes
+
+- d641ede: chore: upgrade deps
+- d641ede: chore: upgrade deps
+
 ## 1.0.0
 
 ### Major Changes
