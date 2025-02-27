@@ -9,7 +9,7 @@ const TeleportModalor = defineComponent({
   },
 })
 
-export const ModalorPlugin = {
+export const modalorPlugin = {
   install(app: App) {
     app.component('Modalor', ModalorComponent)
     const originalMount = app.mount
