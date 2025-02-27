@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { Modalor } from '@modalor/vue'
 import UserProfile from './components/UserProfile.vue'
 import ModalorPlayground from './views/Modalor.vue'
 import NormalPlayground from './views/Normal.vue'
@@ -16,6 +15,5 @@ import NormalPlayground from './views/Normal.vue'
         <UserProfile name="John Doe" />
       </div>
     </div>
-    <Modalor />
   </div>
 </template>
