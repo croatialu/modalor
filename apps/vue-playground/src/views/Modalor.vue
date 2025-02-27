@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { userProfileModal } from '../modals/userProfile'
 import { confirmModal } from '../modals/confirm'
+import { userProfileModal } from '../modals/userProfile'
 
 async function showUserProfile() {
   const [isOk, result] = await userProfileModal.show({

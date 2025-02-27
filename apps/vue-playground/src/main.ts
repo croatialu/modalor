@@ -1,3 +1,4 @@
+import { modalorPlugin } from '@modalor/vue'
 import { createApp } from 'vue'
 import { createVuetify } from 'vuetify'
 import App from './App.vue'
@@ -8,5 +9,6 @@ import 'vuetify/styles'
 import './style.css'
 
 const vuetify = createVuetify()
+const app = createApp(App)
 
-createApp(App).use(vuetify).mount('#app')
+app.use(vuetify).use(modalorPlugin).mount('#app')
