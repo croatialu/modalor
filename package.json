@@ -12,7 +12,8 @@
     "lint": "turbo lint",
     "typecheck": "turbo typecheck",
     "lint:fix": "eslint . --fix",
-    "prepublish": "pnpm build"
+    "prepublish": "pnpm build",
+    "ci:publish": "changeset publish -r"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.3.0",
