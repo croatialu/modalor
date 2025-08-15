@@ -1,4 +1,5 @@
 import type { PropsWithChildren } from 'react'
+import { Button } from '@chakra-ui/react'
 import {
   DialogBackdrop,
   DialogBody,
@@ -8,7 +9,6 @@ import {
   DialogRoot,
   DialogTitle,
 } from '@/components/ui/dialog'
-import { Button } from '@chakra-ui/react'
 
 interface ModalProps {
   open?: boolean

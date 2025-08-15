@@ -11,15 +11,15 @@
   "dependencies": {
     "@mdi/font": "^7.4.47",
     "@modalor/vue": "workspace:^",
-    "vue": "^3.5.13"
+    "vue": "^3.5.18"
   },
   "devDependencies": {
-    "@unocss/reset": "^0.65.4",
-    "@vitejs/plugin-vue": "^5.2.1",
-    "unocss": "^0.65.4",
-    "vite": "^6.2.0",
-    "vite-plugin-vuetify": "^2.1.0",
-    "vue-tsc": "^2.2.4",
-    "vuetify": "^3.7.14"
+    "@unocss/reset": "^66.4.2",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "unocss": "^66.4.2",
+    "vite": "^7.1.2",
+    "vite-plugin-vuetify": "^2.1.2",
+    "vue-tsc": "^3.0.5",
+    "vuetify": "^3.9.5"
   }
 }
