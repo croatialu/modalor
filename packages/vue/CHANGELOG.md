@@ -1,5 +1,11 @@
 # @modalor/vue
 
+## 1.1.0
+
+### Minor Changes
+
+- 9fded32: chore: Update dependency versions and Node.js version
+
 ## 1.0.2
 
 ### Patch Changes
