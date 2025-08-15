@@ -1,6 +1,6 @@
 ---
-"@modalor/react": patch
-"@modalor/vue": patch
+"@modalor/react": minor
+"@modalor/vue": minor
 ---
 
 chore: Update dependency versions and Node.js version
