@@ -17,7 +17,7 @@ interface ModalOptions<T extends AnyObject> {
   }
 }
 
-interface AnyObject {
+export interface AnyObject {
   [key: string]: any
 }
 
