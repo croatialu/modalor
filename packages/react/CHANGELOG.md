@@ -1,5 +1,11 @@
 # @modalor/react
 
+## 1.1.1
+
+### Patch Changes
+
+- c40f608: fix: export AnyObject
+
 ## 1.1.0
 
 ### Minor Changes
