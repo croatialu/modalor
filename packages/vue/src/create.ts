@@ -150,6 +150,7 @@ export function create<ModalProps extends AnyObject>(
         props: ModalContentProps = {} as ModalContentProps,
         /** show modal 时传入的 modal props */
         modalProps: Partial<ModalProps> = {} as Partial<ModalProps>,
+        modalId?: string
       ) => {
         return new Promise<[false, null] | [true, ResolveValues]>((resolve) => {
           create((id) => {
@@ -167,9 +168,12 @@ export function create<ModalProps extends AnyObject>(
                 resolve([true, values])
               },
             })
-          })
+          }, modalId)
         })
       },
+      hide: (modalId: string) => {
+        remove(modalId)
+      }
     }
   }
 }
