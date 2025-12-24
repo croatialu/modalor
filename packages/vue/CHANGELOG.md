@@ -1,5 +1,11 @@
 # @modalor/vue
 
+## 1.1.2
+
+### Patch Changes
+
+- 86be267: chore: 新增 hide 方法
+
 ## 1.1.1
 
 ### Patch Changes
