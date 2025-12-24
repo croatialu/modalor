@@ -1,4 +1,4 @@
-import type { App } from 'vue'
+import type { App, Plugin } from 'vue'
 import { createVNode, defineComponent, h, render, Teleport } from 'vue'
 import { Modalor as ModalorComponent } from './Modalor'
 
@@ -9,7 +9,7 @@ const TeleportModalor = defineComponent({
   },
 })
 
-export const modalorPlugin = {
+export const modalorPlugin: Plugin = {
   install(app: App) {
     app.component('Modalor', ModalorComponent)
     const originalMount = app.mount
