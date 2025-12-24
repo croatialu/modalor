@@ -13,10 +13,10 @@ export function useModalorChildren() {
     modalorChildren.value = modalorChildren.value.filter(child => child.id !== id)
   }
 
-  const create = (render: (id: string) => JSX.Element) => {
-    const id = `MODALOR_CHILD_${modalorChildId++}`
+  const create = (render: (id: string) => JSX.Element, id?: string) => {
+    const realId = id ?? `MODALOR_CHILD_${modalorChildId++}`
 
-    modalorChildren.value = [...modalorChildren.value, { id, render: () => render(id) }]
+    modalorChildren.value = [...modalorChildren.value, { id: realId, render: () => render(realId) }]
 
     return id
   }
